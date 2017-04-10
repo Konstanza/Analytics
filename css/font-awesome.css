@@ -70,6 +70,12 @@
 .fa-pull-right {
   float: right;
 }
+
+.fa.text-align{
+  display: inline-block; 
+  line-height: inherit;
+}
+
 .fa.fa-pull-left {
   margin-right: .3em;
 }

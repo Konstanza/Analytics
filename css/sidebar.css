@@ -1,5 +1,12 @@
 body,html{
     height: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
   }
 
   /*
@@ -9,6 +16,10 @@ body,html{
       -o-transition: margin 200ms ease-out;
       transition: margin 200ms ease-out;
   }*/
+
+  .center-text{
+    text-align: center;
+  }
 
   .main{
     padding: 10px 10px 0 10px;
@@ -30,17 +41,17 @@ body,html{
 
     .main{
       position: absolute;
-      width: calc(100% - 40px); 
-      margin-left: 40px;
+      width: calc(100% - 50px); 
+      margin-left: 50px;
       float: right;
     }
 
     #main-wrapper{
-      margin-left: 40px;
+      margin-left: 50px;
     }
 
     #main-wrapper.margin-s{
-      margin-left: 40px;
+      margin-left: 50px;
     }
 
     #main-wrapper.margin-l {
@@ -95,7 +106,7 @@ body,html{
     nav.sidebar{
       width: 200px;
       height: 100%;
-      margin-left: -160px;
+      margin-left: -150px;
       margin-top: 50px;
       float: left;
       margin-bottom: 0px;
