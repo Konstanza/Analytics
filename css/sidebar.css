@@ -9,6 +9,7 @@ body,html{
     cursor: default;
   }
 
+
   /*
   nav.sidebar, .main{
     -webkit-transition: margin 200ms ease-out;
@@ -24,6 +25,31 @@ body,html{
   .main{
     padding: 10px 10px 0 10px;
   }
+
+#header{
+  -webkit-app-region: drag;
+}
+
+#header-buttons{
+  -webkit-app-region: no-drag;
+}
+
+#header-buttons .btn{
+  background-color: transparent;
+  outline: none;
+  color: #777;
+}
+
+#header-buttons .btn:active{
+  background-color: transparent;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#header-buttons .btn:hover{
+  color: #333;
+}
 
 #main-wrapper {
     height: 100%;
