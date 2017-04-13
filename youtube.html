@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+
+  <meta charset="UTF-8">
+  <title>Analytics</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/icomoon.css" rel="stylesheet" type="text/css">
+  <link href="css/sidebar.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="css/youtube.css">
+  
+
+</head>
+
+<body>
+
+  <nav id="header" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+          <div class="navbar-brand">
+              Analytics
+          </div>
+      </div>
+
+      <div id="header-buttons" class="btn-group pull-right">
+          <button id="minimize-btn" class="btn navbar-btn"><i class="fa fa-window-minimize"></i></button>
+          <button id="maximize-btn" class="btn navbar-btn"><i class="fa fa-window-maximize"></i></button>
+          <button id="fullscreen-btn" class="btn navbar-btn"><i class="fa fa-arrows-alt"></i></button>
+          <button id="close-btn" class="btn navbar-btn"><i class="fa fa-remove"></i></button>
+      </div>
+      </div>
+  </nav>
+
+  <nav class="navbar navbar-default sidebar" role="navigation">
+          <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li id="home-li"><a id="home-a" href="index.html">Home<span class="pull-right hidden-xs showopacity fa fa-home fa-2x text-align"></span></a></li>
+              <li id="facebook-li"><a id="facebook-a" href="facebook.html">Facebook<span  class="pull-right hidden-xs showopacity fa fa-facebook-official fa-2x text-align"></span></a></li>
+              <!--
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users<span class="caret"></span><span  class="pull-right hidden-xs showopacity fa fa-users"></span></span></a>
+                <ul class="dropdown-menu forAnimate" role="menu">
+                  <li><a href="#">Link 1</a></li>
+                  <li><a href="#">Link 2</a></li>
+                  <li><a href="#">Link 3</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link 1</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link 2</a></li>
+                </ul>
+              </li>-->
+              <li id="twitter-li"><a id="twitter-a" href="#">Twitter<span class="fa-pull-right hidden-xs showopacity fa fa-twitter fa-2x text-align">
+        </span></a>
+        </li>        
+              <li id="youtube-li" class="active"><a id="youtube-a" href="youtube.html">Youtube<span class="fa-pull-right hidden-xs showopacity fa fa-youtube fa-2x text-align"></span></a></li>
+              <li id="mercadolibre-li"><a id="mercadolibre-a" href="#">MercadoLibre<span class="fa-pull-right hidden-xs showopacity fa icon-mercadolibre-logo fa-2x text-align"></span></a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  <div id="main-page">
+   <div id="main-wrapper" class="margin-s">
+        <div id="page-content">
+          <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="text-center">Youtube Analitycs</h1>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <center><img class="img-responsive imagenY" src="img/youtubeimg.png"></center>
+                <center><a type="button" class="btn btn-primary" href="https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&hl=es&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Fapp%3Ddesktop%26action_handle_signin%3Dtrue%26hl%3Des%26next%3D%252F%26feature%3Dsign_in_button&passive=true">Iniciar Sesión <span class="glyphicon glyphicon-user"></span></a></center>
+                <div class="jumbotron">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+            
+          </div>
+        </div>
+    </div>
+</div>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+ 
+
+  <script type="text/javascript">
+        (function () {
+            // Retrieve remote BrowserWindow
+            const {BrowserWindow} = require('electron').remote
+
+            function init() {
+                // Minimize task
+                document.getElementById("minimize-btn").addEventListener("click", (e) => {
+                    var window = BrowserWindow.getFocusedWindow();
+                    window.minimize();
+                });
+
+                // Maximize window
+                document.getElementById("maximize-btn").addEventListener("click", (e) => {
+                    var window = BrowserWindow.getFocusedWindow();
+                    if(!window.isFullScreen()){
+                      if(window.isMaximized()){
+                          window.unmaximize();
+                      }else{
+                          window.maximize();
+                      }
+                  }
+                  else {
+                    window.setFullScreen(false);
+                      window.unmaximize();
+                  }
+                });
+
+                // Fullscreen
+                document.getElementById("fullscreen-btn").addEventListener("click", (e) => {
+                    var window = BrowserWindow.getFocusedWindow();
+                    window.setFullScreen(!window.isFullScreen());
+                });
+
+                // Close app
+                document.getElementById("close-btn").addEventListener("click", (e) => {
+                    var window = BrowserWindow.getFocusedWindow();
+                    window.close();
+                });
+
+                mainWindow.setFullScreen(true)
+            };
+
+            document.onreadystatechange =  () => {
+                if (document.readyState == "complete") {
+                    init();
+                }
+            };
+        })();
+        </script>
+</body>
+</html>
