@@ -9,10 +9,19 @@
 	<link href="css/icomoon.css" rel="stylesheet" type="text/css">
 	<link href="css/sidebar.css" rel="stylesheet" type="text/css">
 	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript"> require('electron-cookies'); </script>
 
 </head>
 
 <body>
+
+	<script type="text/javascript">
+		var ipc = require('electron').ipcRenderer;
+
+		var clickFacebookButton = function () {
+			ipc.send("facebook-button-clicked", "yes");
+		};
+	</script>
 
 	<nav id="header" class="navbar navbar-default navbar-fixed-top">
 	    <div class="container-fluid">
@@ -63,6 +72,11 @@
     <div id="main-wrapper" class="margin-s">
       	<div id="page-content">
 	  	    <!--Page shows here-->
+	  	    <div id="home-main-page" class="container-fluid"></div>
+	  	    <div id="facebook-main-page" class="container-fluid"></div>
+	  	    <div id="twitter-main-page" class="container-fluid"></div>
+	  	    <div id="youtube-main-page" class="container-fluid"></div>
+	  	    <div id="mercadolibre-main-page" class="container-fluid"></div>
       	</div>
     </div>
 
@@ -72,9 +86,19 @@
 	<script >
 	    $(document).ready(function () {
 
+	    	var loadPage = function(page, div){
+	    		$("#"+page+"-"+div+"-page").load(page +'.html div#'+ div + "-page");
+	    	};
+
 	    	var changePageContent = function(page, div){
-		      	$("#page-content").load(page +'.html div#'+ div + "-page");
+		      	//$("#page-content").load(page +'.html div#'+ div + "-page");
 		      	
+		      	$("#home-main-page").hide();
+		    	$("#facebook-main-page").hide();
+		    	$("#twitter-main-page").hide();
+		    	$("#youtube-main-page").hide();
+		    	$("#mercadolibre-main-page").hide();
+
 		      	$("#home-li").removeClass("active")
 		      	$("#facebook-li").removeClass("active")
 		      	$("#twitter-li").removeClass("active")
@@ -82,9 +106,17 @@
 		      	$("#mercadolibre-li").removeClass("active")
 
 		      	$("#"+page+"-li").addClass("active")
+		      	$("#"+page+"-"+div+"-page").show();
 		    };
 
-		    changePageContent("home", "main");
+		    loadPage("home", "main")
+		    loadPage("facebook", "main")
+		    loadPage("twitter", "main")
+		    loadPage("youtube", "main")
+		    loadPage("mercadolibre", "main")
+
+		    changePageContent("home", "main")
+		    //changePageContent("home", "main");
 
 		    $(".sidebar").hover( 
 		    	function(){
@@ -102,7 +134,7 @@
 		    });
 
 		    $("#facebook-a").click(function(){
-		      	changePageContent("facebook", "main");
+		    	changePageContent("facebook", "main");
 		    });
 
 		    $("#twitter-a").click(function(){

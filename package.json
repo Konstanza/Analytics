@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron-prebuilt": "^1.4.13"
+    "electron-cookies": "^1.1.0",
+    "electron-prebuilt": "^1.4.13",
+    "fb": "^1.1.1"
   }
 }
