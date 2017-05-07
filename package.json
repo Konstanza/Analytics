@@ -1,15 +1,21 @@
 {
   "name": "analytics",
+  "productName": "Analytics",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "electron index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=all --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Analytics\""
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "electron-prebuilt": "^1.4.13"
+    "electron": "^1.6.6",
+    "electron-cookies": "^1.1.0",
+    "electron-packager": "^8.7.0",
+    "fb": "^2.0.0"
+  },
+  "dependencies": {
+    "fb": "^2.0.0",
+    "electron-cookies": "^1.1.0"
   }
 }
