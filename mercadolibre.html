@@ -1,12 +1,32 @@
-<div id="main-page" class="container-fluid">
+<!--<div id="main-page" class="container-fluid">
 		
-		<img id="MercadoLibre.Cabecera" src="img/mercadolibre.cabecera.png" alt="cabecera">
-<!--<h1>MercadoLibre</h1>-->
+	<img id="MercadoLibre.Cabecera" src="img/mercadolibre.cabecera.png" alt="cabecera">
+    <h1>MercadoLibre</h1>
 
 	<div id="MercadoLibre-login" class="center-text">
-		<img id="MercadoLibre.api.logo" src="img/meli.api.logo.png" alt="Logo Api MercadoLibre" width="150" height="150">
+		<img id="MercadoLibre.api.logo" class="profile" src="img/meli.api.logo.png" alt="Logo Api MercadoLibre">
 		<br/><br/>
-		<!--<input type="button" value="Ingresar" onClick="window.location = 'https://auth.mercadolibre.com/authorization?response_type=code&client_id=3341505141029834';"> -->
+		<input type="button" value="Ingresar" onClick="window.location = 'https://auth.mercadolibre.com/authorization?response_type=code&client_id=3341505141029834';">
 		<a href="https://auth.mercadolibre.com/authorization?response_type=code&client_id=3341505141029834"><img src="img/continuar.png"></a>
+	</div>
+</div>-->
+
+<div id="main-page" class="container-fluid">
+	<!--<h1>MercadoLibre</h1>-->
+
+	<div id="mercadolibre-profile" class="center-text">
+		<img id="mercadolibre-profile-picture" class="profile" src="img/meli.api.logo.png" alt="Profile picture">
+		<br/>
+		<div id="mercadolibre-nickname" >Nickname</div>
+		<br/>
+	</div>
+
+	<button id="mercadolibre-login" class="btn btn-basic center-block" onclick="clickMercadoLibreLoginButton()">Log in</button>
+	
+	<div class="page-header">
+	    <h3>User</h3>
+	</div>
+
+	<div id="mercadolibre-data">
 	</div>
 </div>

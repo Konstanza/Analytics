@@ -1,8 +1,8 @@
 <div id="main-page" class="container-fluid">
-	<h1>Facebook</h1>
+	<!--<h1>Facebook</h1>-->
 
 	<div id="facebook-profile" class="center-text">
-		<img id="facebook-profile-picture" src="img/facebook-profile-picture.jpg" alt="Profile picture" width="150" height="150">
+		<img id="facebook-profile-picture" class="profile" src="img/facebook-profile-picture.jpg" alt="Profile picture">
 		<br/>
 		<div id="facebook-name" >Name</div>
 		<br/>
@@ -11,9 +11,12 @@
 	<button id="facebook-login" class="btn btn-basic center-block" onclick="clickFacebookLoginButton()">Log in</button>
 	
 	<div class="page-header">
-	    <h3>Page</h3>
+	    <h3 id="facebook-title">Pages</h3>
 	</div>
 
 	<div id="facebook-data">
+		<div id="facebook-page-count"></div>
+		<br/>
+		<div id="facebook-pages"></div>
 	</div>
 </div>

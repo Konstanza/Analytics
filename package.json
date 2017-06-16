@@ -12,10 +12,12 @@
     "electron": "^1.6.6",
     "electron-cookies": "^1.1.0",
     "electron-packager": "^8.7.0",
-    "fb": "^2.0.0"
+    "fb": "^2.0.0",
+    "mercadolibre": "0.0.13"
   },
   "dependencies": {
     "fb": "^2.0.0",
+    "mercadolibre": "0.0.13",
     "electron-cookies": "^1.1.0"
   }
 }
