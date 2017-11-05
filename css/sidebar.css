@@ -9,6 +9,14 @@ body,html{
     cursor: default;
   }
 
+img.profile{
+  width: 150px;
+  height: 150px;
+}
+
+.loading {
+  cursor: progress;
+}
 
   /*
   nav.sidebar, .main{

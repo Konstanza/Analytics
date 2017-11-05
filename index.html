@@ -4,17 +4,24 @@
 
 	<meta charset="UTF-8">
 	<title>Analytics</title>
+
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 	<link href="css/icomoon.css" rel="stylesheet" type="text/css">
 	<link href="css/sidebar.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/youtube.css">
+
 	<script src="js/jquery.min.js" type="text/javascript"></script>
+
 	<script type="text/javascript">require('electron-cookies');</script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  	<script type="text/javascript" src="//www.google.com/jsapi"></script>
-  	<script type="text/javascript" src="js/anYoutube.js"></script>
-  	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=onJSClientLoad"></script>
+
+  	<script type="text/javascript" src="js/twitter.js"></script>
   	<link rel="stylesheet" type="text/css" href="css/youtube.css">
+
+  	<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+  	<script type="text/javascript" src="//www.google.com/jsapi"></script>
+  	<script type="text/javascript" src="js/index.js"></script>
+  	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=onJSClientLoad"></script>
 
 </head>
 
@@ -36,25 +43,12 @@
 	    </div>
 	</nav>
 
-	<nav class="navbar navbar-default sidebar" role="navigation">
+	<nav id="menu" class="navbar navbar-default sidebar" role="navigation">
           <div class="container-fluid">
           <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li id="home-li" class="active"><a id="home-a" href="#">Home<span class="pull-right hidden-xs showopacity fa fa-home fa-2x text-align"></span></a></li>
+              <!--<li id="home-li" class="active"><a id="home-a" href="#">Home<span class="pull-right hidden-xs showopacity fa fa-home fa-2x text-align"></span></a></li>-->
               <li id="facebook-li"><a id="facebook-a" href="#">Facebook<span  class="pull-right hidden-xs showopacity fa fa-facebook-official fa-2x text-align"></span></a></li>
-              <!--
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users<span class="caret"></span><span  class="pull-right hidden-xs showopacity fa fa-users"></span></span></a>
-                <ul class="dropdown-menu forAnimate" role="menu">
-                  <li><a href="#">Link 1</a></li>
-                  <li><a href="#">Link 2</a></li>
-                  <li><a href="#">Link 3</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link 1</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link 2</a></li>
-                </ul>
-              </li>-->
               <li id="twitter-li"><a id="twitter-a" href="#">Twitter<span class="fa-pull-right hidden-xs showopacity fa fa-twitter fa-2x text-align">
 				</span></a>
 			  </li>        
@@ -92,6 +86,40 @@
 		var clickMercadoLibreLoginButton = function () {
 			ipc.send("mercadolibre-login-button-clicked", "yes");
 		};
+
+		var getTwitterData = function(){
+		 var user = document.getElementById("twitter-name-input").value;
+			if (user == ""){
+				document.getElementById("twitter-name-input").focus();
+			} else {
+				ipc.send("get-twitter-data", user);
+				document.getElementById("twitter-title").innerHTML = "&#64;"+user;
+				//console.log(user);
+		  }
+		 document.getElementById("twitter-test").innerHTML = user;
+		}
+
+		ipc.on("load", function(event, response){
+			if(response) {
+				document.getElementById("page-content").classList.add("loading");
+			}
+			else {
+				document.getElementById("page-content").classList.remove("loading");
+			}
+		});
+
+		ipc.on("update-twitter", function(event, response){
+			document.getElementById("twitter-name").innerHTML = "Name: "+response.name;
+			document.getElementById("twitter-user").innerHTML = "User: "+response.screen_name;
+			document.getElementById("twitter-location").innerHTML = "Location: "+response.location;
+			document.getElementById("twitter-followers").innerHTML = "Followers: "+response.followers_count;
+			document.getElementById("twitter-following").innerHTML = "Following: "+response.friends_count;
+			document.getElementById("twitter-statuses").innerHTML = "Tweets: "+response.statuses_count;
+			document.getElementById("twitter-favourites").innerHTML = "Favourites: "+response.favourites_count;
+			document.getElementById("twitter-profile-picture").src =  response.profile_image_url;
+
+			ipc.send("sub-load");
+		});
 
 		ipc.on("update-facebook-page", function(event, response){
 			var page_div = document.createElement('div');
@@ -136,6 +164,8 @@
 
 			page_div.appendChild(page_th);
 			document.getElementById("facebook-pages").appendChild(page_div);
+
+			ipc.send("sub-load");
 		});
 
 		var update_facebook_pages = function(pages){
@@ -162,10 +192,26 @@
 				}
 
 	          	update_facebook_pages(response.pages);
+
+	          	ipc.send("sub-load");
 	        });
 
 		ipc.on("update-mercadolibre", function(event, response){
-		    	document.getElementById("mercadolibre-nickname").innerHTML =  response.nickname;
+		    	document.getElementById("meli-nickname").innerHTML =  response.nickname;
+		    	document.getElementById("meli-first_name").innerHTML =  "First name: "+response.first_name;
+		    	document.getElementById("meli-last_name").innerHTML =  "Last name: "+response.last_name;
+		    	document.getElementById("meli-email").innerHTML =  "Email: "+response.email;
+		    	document.getElementById("meli-identification").innerHTML =  "Identification: "+response.id_type+" "+response.id_number;
+		    	document.getElementById("meli-user_type").innerHTML =  "User type: "+response.user_type;
+		    	document.getElementById("meli-points").innerHTML =  "Points: "+response.points;
+
+		    	document.getElementById("meli-seller_experience").innerHTML =  "Seller experience: "+response.seller_exp;
+				document.getElementById("meli-seller-completed_trans").innerHTML =  "Completed transactions: "+response.seller_comp_trans;
+				document.getElementById("meli-seller-canceled_trans").innerHTML =  "Canceled transactions: "+response.seller_canc_trans;
+				document.getElementById("meli-buyer-completed-trans").innerHTML =  "Completed transactions: "+response.buyer_comp_trans;
+				document.getElementById("meli-buyer-canceled_trans").innerHTML =  "Canceled transactions: "+response.buyer_canc_trans;
+
+				ipc.send("sub-load");
 	        });
 	</script>
 
