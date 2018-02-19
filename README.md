@@ -1,5 +1,5 @@
 # Analytics
-Project for Software engineering class.			
+Project for Software engineering course.			
 
 Analytics app for Facebook, Twitter, YouTube and MercadoLibre.		
 
